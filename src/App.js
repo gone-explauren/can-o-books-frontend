@@ -10,13 +10,20 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
+
+  // when the site loads (has everything it needs), the data will be displayed
+  componentDidMount() {
+    this.getBook();
+  };
+
   render() {
+
     return (
       <>
         <Router>
           <Header />
           <Routes>
-            <Route 
+            <Route
               exact path="/"
               element={<BestBooks />}
             >

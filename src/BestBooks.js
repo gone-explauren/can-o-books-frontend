@@ -9,6 +9,7 @@ class BestBooks extends React.Component {
   }
 
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
+  
 
   render() {
 
@@ -16,7 +17,7 @@ class BestBooks extends React.Component {
 
     return (
       <>
-        <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+        <h2>Required Reading</h2>
 
         {this.state.books.length ? (
           <p>Book Carousel coming soon</p>
