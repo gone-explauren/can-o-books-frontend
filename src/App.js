@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+
 import BestBooks from './BestBooks';
+import BookFormModal from './BookFormModal';
 import About from './About';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,10 +25,15 @@ class App extends React.Component {
             <Route
               exact path="/"
               element={<BestBooks />}
-            >
-            </Route>
+            ></Route>
+            <Route
+              exact path="/"
+              element={<BookFormModal />}
+            ></Route>
+            <Route
               exact path="/"
               element={<About />}
+            ></Route>
           </Routes>
           <Footer />
         </Router>
