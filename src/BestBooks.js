@@ -14,7 +14,7 @@ class BestBooks extends React.Component {
     }
   }
 
-  /* TODO: Make a GET request to your API to fetch all the books from the database  */
+  /* Done: Make a GET request to your API to fetch all the books from the database  */
   getBooks = async () => {
 
     try {
@@ -40,7 +40,7 @@ class BestBooks extends React.Component {
 
   render() {
 
-    /* TODO: render all the books in a Carousel */
+    /* Done: render all the books in a Carousel */
     let carouselItems = this.state.books.map((book) => (
 
 
@@ -55,6 +55,7 @@ class BestBooks extends React.Component {
           <h3>{book.title}</h3>
           <p>{book.author}</p>
           <p>{book.release_date}</p>
+          <p>{book.status}</p>
           <p>{book.description}</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -74,7 +75,7 @@ class BestBooks extends React.Component {
 
         ) : (
 
-          <h3>No Books Found :(</h3>
+          <h3>The Library is Closed :(</h3>
 
         )}
       </>
