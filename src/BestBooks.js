@@ -69,7 +69,7 @@ class BestBooks extends React.Component {
 
         {this.state.books.length ? (
 
-          <Carousel>
+          <Carousel varient='dark'>
             {carouselItems}
           </Carousel>
 
