@@ -1,8 +1,6 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
-import { Button, Container, ListGroup, Modal, Form } from 'react-bootstrap';
+import { Button, Container, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { trusted } from 'mongoose';
 
 class BookFormModal extends React.Component {
 
@@ -10,13 +8,19 @@ class BookFormModal extends React.Component {
 		super(props);
 		this.state = {
 			addBook: false,
-			showModal: false,
+			showModal: false
 		}
 	}
-	
-	handleShowModal = () => {
+
+	handleOpenModal = () => {
 		this.setState({
 			showModal: true
+		})
+	}
+
+	handleHideModal = () => {
+		this.setState({
+			showModal: false
 		})
 	}
 
@@ -33,23 +37,31 @@ class BookFormModal extends React.Component {
 		// envoke this function to add the new book that was submitted
 		this.handleAddNewBook(newBook);
 
-	}
+	};
 
 	handleAddNewBook = async (newBook) => {
 		try {
+			// console.log(newBook);
 
-			// query string to add new boom to the server db
+			// query string to add new boom to the server db:
+			// `${process.env.REACT_APP_SERVER}/books`
+
+			// for testing purposes:
+			// let bookFromDB = 
 			await axios.post(`${process.env.REACT_APP_SERVER}/books`, newBook);
 
+			// console.log(bookFromDB);
+
 		} catch (error) {
+
 			this.setState({
-
 				error: true,
-				errorMessage: 'There was an error:' + error.response + ', ' + error.response.data
-
+				errorMessage: 'Oops!',
 			});
+
+			console.log(error)
 		}
-	}
+	};
 
 	render() {
 
@@ -59,17 +71,17 @@ class BookFormModal extends React.Component {
 
 				<>
 
-					<Button variant="primary" onClick={this.handleAddNewBook}>
-						Add a Book Reccommendation
+					<Button variant="primary" onClick={this.handleOpenModal}>
+						Got a Book Reccommendation?
 					</Button>
 
 					<Modal className="bookFormModal"
-						show={this.handleShowModal} onHide={this.state.showModal}
+						show={this.state.showModal} onHide={this.handleHideModal}
 					>
 
 						<Modal.Header closeButton>
 							<Modal.Title>
-								Got Reading Recs?
+								Add to the Library
 							</Modal.Title>
 						</Modal.Header>
 
@@ -95,10 +107,13 @@ class BookFormModal extends React.Component {
 								</Form.Group>
 
 								<Form.Group controlId="status">
+									<Form.Label>
+										Have You Read This Book?
+									</Form.Label>
 									<Form.Select>
 										<option value="Consumed">Read</option>
 										<option value="Information Absorbed through Telepathy">Started / Skimmed</option>
-										<option value="Untouched">Reading List / Unstarted</option>
+										<option value="Untouched, but Touchable">Reading List / Unstarted</option>
 									</Form.Select>
 								</Form.Group>
 
@@ -122,7 +137,7 @@ class BookFormModal extends React.Component {
 					</Modal>
 
 				</>
-				
+
 			</Container>
 		)
 	}
