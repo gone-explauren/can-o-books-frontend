@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import BookFormModal from './BookFormModal';
+import UpdateBookFormModal from './UpdateBookFormModal';
 
 import { Carousel, Button } from 'react-bootstrap';
 
@@ -13,7 +14,9 @@ class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      showUpdateModal: false,
+      selectedBookToUpdate: {}
     }
   }
 
@@ -62,10 +65,10 @@ class BestBooks extends React.Component {
       // DO NOT expect a returned value from axios.delete();
       await axios.delete(url);
 
-      let updatedBooks = this.state.books.filter(book => book._id !== id);
+      let updatedArrayOfBooks = this.state.books.filter(book => book._id !== id);
 
       this.setState({
-        books: updatedBooks
+        books: updatedArrayOfBooks
       });
 
     } catch (error) {
@@ -74,6 +77,46 @@ class BestBooks extends React.Component {
 
     }
   }
+
+  updateBook = async (bookToUpdate) => {
+		try{
+    let updatedBookFromDatabase = await axios.put(`${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`, bookToUpdate);
+
+    let updatedBooks = this.state.books.map((book) => {
+
+      return book._id === bookToUpdate._id 
+      ? 
+			updatedBookFromDatabase.data
+      : 
+			book
+    });
+    this.setState({
+      books: updatedBooks,
+      showUpdateModal: false
+    });
+    } catch (error) {
+      this.setState({
+				error: true,
+				errorMessage: 'Oops!',
+			});
+			console.log(error)
+    }
+  }
+
+  handleUpdateButtonClick = (book) => {
+    // console.log("Button clicked!");
+    this.setState({
+      selectedBookToUpdate: book,
+      showUpdateModal: true
+    })
+  }
+
+
+	handleHideUpdateModal = () => {
+		this.setState({
+			showUpdateModal: false
+		})
+	}
 
   // when the site loads (has everything it needs), the data will be displayed
   componentDidMount() {
@@ -102,12 +145,20 @@ class BestBooks extends React.Component {
             <p>{book.description}</p>
 
             <Button
-                className='bookRecButton'
-                variant='dark'
-                onClick={() => this.deleteBook(book._id)}
-              >
-                Delete Book
-              </Button>
+              className='bookDeleteButton'
+              variant='dark'
+              onClick={() => this.deleteBook(book._id)}
+            >
+              Delete Book
+            </Button>
+
+            <Button
+              className='bookUpdateButton'
+              variant='dark'
+              onClick={() => this.handleUpdateButtonClick(book)}
+            >
+              Make a Change?
+            </Button>
 
           </Carousel.Caption>
         </Carousel.Item>
@@ -116,7 +167,7 @@ class BestBooks extends React.Component {
       );
 
     });
-    //console.log(carouselItems);
+    // console.log(carouselItems);
 
     return (
 
@@ -140,6 +191,14 @@ class BestBooks extends React.Component {
           books={this.state.books}
           postBooks={this.postBooks}
           deleteBooks={this.deleteBooks}
+        />
+
+        <UpdateBookFormModal
+          books={this.state.books}
+          showUpdateModal={this.state.showUpdateModal}
+          handleHideUpdateModal={this.handleHideUpdateModal}
+          selectedBookToUpdate={this.state.selectedBookToUpdate}
+          updateBook={this.updateBook}
         />
 
       </>
