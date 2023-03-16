@@ -60,15 +60,19 @@ class BestBooks extends React.Component {
     }
   }
 
-  const confirmDelete = () => {
-               const response = confirm("Throw this book into the fire?");
+  // confirm() is a method in JavaScript, but not in React. Maybe make a confirm Modal? Stretch Goal.
+  // confirmDelete = (book) => {
+  //   const response = confirm("Throw this book into the fire?");
 
-                if (response) {
-                    this.deleteBook(book._id);
-                } else {
-                    console.log("These pages were spared from the flames of fury.");
-                }
-            }
+  //   if (response) {
+  //     this.deleteBook(book._id);
+
+  //   } else {
+
+  //     console.log("These pages were spared from the flames of fury.");
+      
+  //   }
+  // }
 
   deleteBook = async (id) => {
     try {
@@ -91,27 +95,29 @@ class BestBooks extends React.Component {
   }
 
   updateBook = async (bookToUpdate) => {
-		try{
-    let updatedBookFromDatabase = await axios.put(`${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`, bookToUpdate);
+    try {
+      let updatedBookFromDatabase = await axios.put(`${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`, bookToUpdate);
 
-    let updatedBooks = this.state.books.map((book) => {
+      let updatedBooks = this.state.books.map((book) => {
 
-      return book._id === bookToUpdate._id 
-      ? 
-			updatedBookFromDatabase.data
-      : 
-			book
-    });
-    this.setState({
-      books: updatedBooks,
-      showUpdateModal: false
-    });
+        return book._id === bookToUpdate._id
+          ?
+          updatedBookFromDatabase.data
+          :
+          book
+      });
+      
+      this.setState({
+        books: updatedBooks,
+        showUpdateModal: false
+      });
+
     } catch (error) {
       this.setState({
-				error: true,
-				errorMessage: 'Oops!',
-			});
-			console.log(error)
+        error: true,
+        errorMessage: 'Oops!',
+      });
+      console.log(error)
     }
   }
 
@@ -124,11 +130,11 @@ class BestBooks extends React.Component {
   }
 
 
-	handleHideUpdateModal = () => {
-		this.setState({
-			showUpdateModal: false
-		})
-	}
+  handleHideUpdateModal = () => {
+    this.setState({
+      showUpdateModal: false
+    })
+  }
 
   // when the site loads (has everything it needs), the data will be displayed
   componentDidMount() {
@@ -159,7 +165,7 @@ class BestBooks extends React.Component {
             <Button
               className='bookDeleteButton'
               variant='dark'
-              onClick={() => this.confirmDelete()}
+              onClick={() => this.deleteBook(book._id)}
             >
               Delete Book
             </Button>

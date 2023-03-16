@@ -36,6 +36,7 @@ class BookFormModal extends React.Component {
 
 		// envoke this function to add the new book that was submitted
 		this.handleAddNewBook(newBook);
+		this.handleHideModal();
 
 	};
 
