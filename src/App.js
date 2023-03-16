@@ -27,11 +27,7 @@ class App extends React.Component {
               element={<BestBooks />}
             ></Route>
             <Route
-              exact path="/"
-              element={<BookFormModal />}
-            ></Route>
-            <Route
-              exact path="/"
+              exact path="/about"
               element={<About />}
             ></Route>
           </Routes>

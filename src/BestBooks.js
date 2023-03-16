@@ -4,6 +4,8 @@ import axios from 'axios';
 import BookFormModal from './BookFormModal';
 import UpdateBookFormModal from './UpdateBookFormModal';
 
+import './BestBooks.css';
+
 import { Carousel, Button } from 'react-bootstrap';
 
 const SERVER = process.env.REACT_APP_SERVER;

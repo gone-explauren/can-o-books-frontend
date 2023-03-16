@@ -1,0 +1,8 @@
+.nav-items {
+	display: flex;
+}
+
+div .nav-item {
+	color: white;
+	padding: 8px;
+}

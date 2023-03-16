@@ -46,19 +46,19 @@ class UpdateBookFormModal extends React.Component {
 								<Form.Group controlId="title">
 									<Form.Label>Title</Form.Label>
 									{/* Why aren't my placeholders working? */}
-									<Form.Control type="text" placeholder={this.props.books.title}/>
+									<Form.Control type="text" placeholder={this.props.selectedBookToUpdate.title}/>
 								</Form.Group>
 
 								<Form.Group controlId="author">
 									<Form.Label>Author</Form.Label>
-									<Form.Control type="text" placeholder={this.props.books.author}/>
+									<Form.Control type="text" placeholder={this.props.selectedBookToUpdate.author}/>
 								</Form.Group>
 
 								<Form.Group controlId="releaseDate">
 									<Form.Label>
 										Date Published
 									</Form.Label>
-									<Form.Control type="text" placeholder={this.props.books.release_date}/>
+									<Form.Control type="text" placeholder={this.props.selectedBookToUpdate.release_date}/>
 								</Form.Group>
 
 								<Form.Group controlId="status">
@@ -74,7 +74,7 @@ class UpdateBookFormModal extends React.Component {
 
 								<Form.Group controlId="description">
 									<Form.Label>Description</Form.Label>
-									<Form.Control type="text" placeholder={this.props.books.description}/>
+									<Form.Control type="text" placeholder={this.props.selectedBookToUpdate.description}/>
 								</Form.Group>
 
 								<Button varient="primary" type="submit">
