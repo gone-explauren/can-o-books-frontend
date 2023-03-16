@@ -48,7 +48,7 @@ class BestBooks extends React.Component {
       //console.log(createdBook.data);
 
       this.setState({
-        cats: [...this.state.books, createdBook.data]
+        books: [...this.state.books, createdBook.data]
       })
 
     } catch (error) {
