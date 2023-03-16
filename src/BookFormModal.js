@@ -111,7 +111,7 @@ class BookFormModal extends React.Component {
 										Have You Read This Book?
 									</Form.Label>
 									<Form.Select>
-										<option value="Consumed">Read</option>
+										<option value="Content Consumed">Read</option>
 										<option value="Information Absorbed through Telepathy">Started / Skimmed</option>
 										<option value="Untouched, but Touchable">Reading List / Unstarted</option>
 									</Form.Select>
@@ -129,9 +129,9 @@ class BookFormModal extends React.Component {
 							</Form>
 						</Modal.Body>
 
-						{/* Stealing this from Nate bc the bit was top notch */}
+			
 						<Modal.Footer className="bookModalFooter">
-							{/* The bookworms are always hungry... */}
+							My power increases alongside my stack of unread books.
 						</Modal.Footer>
 
 					</Modal>
