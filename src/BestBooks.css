@@ -1,6 +1,12 @@
-/* bnot working 
 button.btn.btn-primary {
-	display: flex;
-	justify-content: left;
-	margin: 3px
-} */
+	margin: 3px;
+	background-color: midnightblue;
+}
+
+button.btn.btn-primary:hover {
+	background-color: rgb(14, 14, 58);
+}
+
+div .container {
+	margin: 0;
+}
