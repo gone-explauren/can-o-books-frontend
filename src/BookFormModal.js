@@ -43,7 +43,7 @@ class BookFormModal extends React.Component {
 		try {
 			// console.log(newBook);
 
-			// query string to add new boom to the server db:
+			// query string to add new book to the server db:
 			// `${process.env.REACT_APP_SERVER}/books`
 
 			// for testing purposes:
