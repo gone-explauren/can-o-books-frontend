@@ -58,6 +58,16 @@ class BestBooks extends React.Component {
     }
   }
 
+  const confirmDelete = () => {
+               const response = confirm("Throw this book into the fire?");
+
+                if (response) {
+                    this.deleteBook(book._id);
+                } else {
+                    console.log("These pages were spared from the flames of fury.");
+                }
+            }
+
   deleteBook = async (id) => {
     try {
       let url = `${SERVER}/books/${id}`;
@@ -147,7 +157,7 @@ class BestBooks extends React.Component {
             <Button
               className='bookDeleteButton'
               variant='dark'
-              onClick={() => this.deleteBook(book._id)}
+              onClick={() => this.confirmDelete()}
             >
               Delete Book
             </Button>
