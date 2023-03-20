@@ -226,5 +226,3 @@ class BestBooks extends React.Component {
 }
 
 export default BestBooks;
-
-// TODO: Lab-14: add Login and Auth0
