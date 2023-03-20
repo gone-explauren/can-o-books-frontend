@@ -4,8 +4,8 @@ functionality needed to have a fully functional database
 
 * Create *in backend*
 * Read *available in frontend*
-* Update
-* Delete
+* Update *Refer to Lab-12 zoom recording*
+* Delete *Refer to Lab-13 zoom recording*
 
 # REACT Lifecycle
 
